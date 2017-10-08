@@ -2,12 +2,7 @@
   <div id="app">
     <nav>
         <div class="container">
-            <ul class="nav__left">
-
-                <li><router-link to="/">Home</router-link></li>
-                <li><router-link to="/recipes">Recipes</router-link></li>
-
-            </ul>
+            <router-link v-if="authenticated" @click.native="logout" to="">Logout</router-link>
         </div>
     </nav>
 
@@ -17,8 +12,19 @@
 </template>
 
 <script>
+import auth from '@/auth/index'
+
 export default {
-  name: 'app'
+  name: 'app',
+  computed: {
+      authenticated () { return auth.checkAuth() }
+  },
+  methods: {
+      logout() {
+          auth.logout()
+          this.$router.go('/')
+      }
+  }
 }
 </script>
 

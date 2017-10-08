@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/pages/Home'
+import auth from '@/auth/index'
 
 import Index from '@/pages/recipes/Index'
 import Create from '@/pages/recipes/Create'
@@ -9,12 +10,17 @@ import Update from '@/pages/recipes/Update'
 
 Vue.use(Router)
 
-export default new Router({
-  routes: [
+const routes = [
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: Home,
+      beforeEnter: (to, from, next) => {
+          if(auth.checkAuth())
+              next('/recipes')
+          else
+              next()
+      }
     },
     {
       path: '/recipes',
@@ -36,7 +42,19 @@ export default new Router({
             name: 'Update',
             component: Update
         }
-      ]
+      ],
+      beforeEnter: (to, from, next) => {
+          if(auth.checkAuth())
+              next()
+          else
+              next('/')
+      }
+
     }
-  ]
+]
+
+const router = new Router({
+    routes
 })
+
+export default router
