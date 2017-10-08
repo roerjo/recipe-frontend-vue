@@ -1,6 +1,8 @@
 # recipefrontend
 
-> A Vue.js project
+The Vue.js frontend will connect to the Laravel backend project that I have located here: https://github.com/roerjo/recipe
+
+My goal for this project is to learn Vue and successfully develop a separate frontend application to a Laravel backend API.
 
 ## Build Setup
 
