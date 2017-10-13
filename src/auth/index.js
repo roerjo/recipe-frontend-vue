@@ -16,7 +16,7 @@ export default {
     axios.post(LOGIN_URL, creds)
         .then((data) => {
 
-            localStorage.setItem('access_token', data.access_token)
+            localStorage.setItem('access_token', data.data)
 
             this.user.authenticated = true
 
@@ -34,7 +34,7 @@ export default {
     axios.post(SIGNUP_URL, creds)
         .then((data) => {
             
-            localStorage.setItem('access_token', data.access_token)
+            localStorage.setItem('access_token', data.data)
 
             this.user.authenticated = true
 

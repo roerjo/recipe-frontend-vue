@@ -10,12 +10,18 @@
 
 <script>
 import RecipeForm from '@/components/recipes/RecipeForm.vue'
+import axios from 'axios'
+import auth from '@/auth/index'
+
 export default {
   name: 'create',
   data () {
     return {
       msg: 'Create a new recipe!',
       model: {
+        recipe: {
+            name: '',
+        },
         ingredients: [],
       },
       ingredients: [
@@ -32,8 +38,15 @@ export default {
     }
   },
   methods: {
-      addRecipe: function (model) {
-          console.log('model', model)
+      addRecipe (model) {
+          console.log(model)
+          axios.post("http://recipe.app:8000/api/v1/recipe", model, {headers: auth.getAuthHeader()})
+              .then((stuff) => {
+                  console.log(stuff)
+              })
+              .catch((err) => {
+                  console.log(err.response.data)
+              })
       }
   },
   components: {

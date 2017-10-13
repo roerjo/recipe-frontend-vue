@@ -1,12 +1,12 @@
 <template>
     <form @submit.prevent="saveRecipe">
         <label>Recipe Name</label>
-        <input type="text" placeholder="Name" v-model="model.name" v-validate="'required'" name="name" />
+        <input type="text" placeholder="Name" v-model="model.recipe.name" v-validate="'required'" name="name" />
         <span v-show="errors.has('name')">Name is required</span>
         <label>Ingredients</label>
         <select type="text" v-model="model.ingredients" name="ingredients" multiple>
             <template v-for="ingredient in ingredients">
-                <option :value="ingredient.id" :selected="ingredient.id == (model.ingredient && model.ingredient.id)">{{ ingredient.name }}</option>
+                <option :value="ingredient">{{ ingredient.name }}</option>
             </template>
         </select>
         <button type="submit">

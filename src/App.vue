@@ -1,8 +1,12 @@
 <template>
   <div id="app">
     <nav>
-        <div class="container">
-            <router-link v-if="authenticated" @click.native="logout" to="">Logout</router-link>
+        <div class="container" v-if="authenticated">
+            <router-link to="/recipes">All Your Recipes</router-link>
+            <router-link to="/recipes/create">Create a New Recipe</router-link>
+            <router-link to="/recipes/delete">Delete a New Recipe</router-link>
+            <router-link to="/recipes/update">Update a New Recipe</router-link>
+            <router-link @click.native="logout" to="">Logout</router-link>
         </div>
     </nav>
 
