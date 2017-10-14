@@ -66,8 +66,6 @@ export default {
 
   // The object to be passed as a header for authenticated requests
   getAuthHeader() {
-    return {
-      'Authorization': 'Bearer ' + localStorage.getItem('access_token')
-    }
+    return 'Bearer ' + localStorage.getItem('access_token')
   }
 }

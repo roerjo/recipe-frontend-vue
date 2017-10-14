@@ -1,72 +1,69 @@
 <template>
-    <div>
-        <div class="title">
-            <h1>{{ msg }}</h1>
-            <router-view></router-view>
-            <div class="container">
-                <h1>Recipes</h1>
-                <div v-for="recipe in recipes[0]">
-                    <div class="recipe">
-                        <h3>{{ recipe.name }}</h3>
-                        <ul v-for="ingredient in recipe.ingredients">
-                            <li>{{ ingredient.name }}</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="row justify-content-around">
+        <h3 class="col-lg-12 text-center">All Your Recipes</h3>
+        <recipe v-for="recipe in recipes" :recipe="recipe"></recipe>
     </div>
 </template>
 
 <script>
-import auth from '@/auth/index'
 import axios from 'axios'
+import Recipe from '@/components/recipes/Recipe.vue'
 
 export default {
-  name: 'index',
-  data () {
-    return {
-      msg: 'All your sweet recipes!',
-      recipes: [],
+    
+    name: 'index',
+    
+    data () {
+        return {
+            recipes: [
+                {
+                    id: 5,
+                    name: 'Mac \'n Cheese',
+                    description: 'A delicious pasta dish',
+                    instructions: 'Boil water, add pasta, cook for 10 min, drain, mix in cheese',
+                    ingredients: [
+                        {
+                            name: 'pasta',
+                            amount: '2 cups',
+                            prepped: ''
+                        },
+                        {
+                            name: 'cheese',
+                            amount: '3 tblsp',
+                            prepped: 'shredded'
+                        }
+                    ]
+                },
+            ],
+        }
+    },
 
-    }
-  },
-  mounted () {
+    mounted () {
         return this.getRecipes()
-  },
-  methods: {
-      getRecipes () {
-          axios.get("http://recipe.app:8000/api/v1/recipe", {headers: auth.getAuthHeader()})
-              .then((stuff) => {
-                  this.recipes.push(stuff.data.recipes)
-                  console.log(this.recipes)
-              })
-              .catch((err) => {
-                  console.log(err.response.data)
-              })
-      },
-  }
+    },
+
+    methods: {
+        getRecipes () {
+            axios.get("http://recipe.app:8000/api/v1/recipe")
+                .then((stuff) => {
+                    
+                    for (let recipe of stuff.data.recipes) {
+                        this.recipes.push(recipe)
+                    }
+                    console.log(this.recipes)
+                })
+                .catch((err) => {
+                    console.log(err.response.data)
+                })
+        },
+    },
+
+    components: {
+        'recipe': Recipe,
+    }
       
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
 </style>

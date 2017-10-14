@@ -1,9 +1,6 @@
 <template>
     <div>
-        <div class="title">
-            <h1>{{ msg }}</h1>
-        </div>
-        <recipe-form @save-recipe="addRecipe" :model="model" :ingredients="ingredients" :isUpdating="isUpdating">
+        <recipe-form @save-recipe="addRecipe" :model="model" :isUpdating="isUpdating">
         </recipe-form>
     </div>
 </template>
@@ -11,36 +8,26 @@
 <script>
 import RecipeForm from '@/components/recipes/RecipeForm.vue'
 import axios from 'axios'
-import auth from '@/auth/index'
 
 export default {
   name: 'create',
   data () {
     return {
-      msg: 'Create a new recipe!',
       model: {
         recipe: {
             name: '',
+            description: '',
+            instructions: '',
         },
         ingredients: [],
       },
-      ingredients: [
-        {
-            id: 1,
-            name: 'pasta',
-        },
-        {
-            id: 2,
-            name: 'sauce',
-        },
-      ],
-      isUpdating: true,
+      isUpdating: false,
     }
   },
   methods: {
       addRecipe (model) {
           console.log(model)
-          axios.post("http://recipe.app:8000/api/v1/recipe", model, {headers: auth.getAuthHeader()})
+          axios.post("http://recipe.app:8000/api/v1/recipe", model)
               .then((stuff) => {
                   console.log(stuff)
               })
@@ -54,25 +41,3 @@ export default {
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-</style>
-

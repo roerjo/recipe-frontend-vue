@@ -4,6 +4,7 @@ import Home from '@/pages/Home'
 import auth from '@/auth/index'
 
 import Index from '@/pages/recipes/Index'
+import Details from '@/pages/recipes/Details'
 import Create from '@/pages/recipes/Create'
 import Delete from '@/pages/recipes/Delete'
 import Update from '@/pages/recipes/Update'
@@ -17,29 +18,24 @@ const routes = [
       component: Home,
       beforeEnter: (to, from, next) => {
           if(auth.checkAuth())
-              next('/recipes')
+              next('/recipe')
           else
               next()
       }
     },
     {
-      path: '/recipes',
-      name: 'Index',
+      path: '/recipe',
+      name: 'index',
       component: Index,
       children: [
         {
-            path: 'create',
-            name: 'Create',
-            component: Create
-        },
-        {
             path: 'delete/:id',
-            name: 'Delete',
+            name: 'delete',
             component: Delete
         },
         {
             path: 'update/:id',
-            name: 'Update',
+            name: 'update',
             component: Update
         }
       ],
@@ -49,8 +45,32 @@ const routes = [
           else
               next('/')
       }
-
+    },
+    {
+        path: '/recipe/:id',
+        name: 'details',
+        component: Details,
+        props: true,
+        beforeEnter: (to, from, next) => {
+          if(auth.checkAuth())
+              next()
+          else
+              next('/')
+        }
+    },
+    {
+        path: '/create',
+        name: 'create',
+        component: Create,
+        beforeEnter: (to, from, next) => {
+          if(auth.checkAuth())
+              next()
+          else
+              next('/')
+        }
     }
+        
+    
 ]
 
 const router = new Router({
