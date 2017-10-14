@@ -1,5 +1,5 @@
 <template>
-    <form >
+    <form @submit.prevent="saveRecipe">
         <div class="form-group">
             <label for="recipe-name">Recipe Name</label>
             <input type="text" id="recipe-name" class="form-control" 
@@ -15,7 +15,7 @@
         <div class="form-group">
             <div v-for="(ingredient, ind) in model.ingredients">
                 <li>
-                    {{ ind }} {{ ingredient.amount }} {{ ingredient.name }} {{ ingredient.prepped }}
+                    {{ ingredient.amount }} {{ ingredient.name }} {{ ingredient.prepped }}
                     <button @click="removeIngredient(ind)" class="btn btn-sm">Remove Ingredient</button>
                 </li>
             </div>
@@ -40,7 +40,7 @@
             <span v-show="errors.has('instructions')">Instructions are required</span>
             <p v-html=" model.recipe.instructions"></p>
         </div>
-        <button @submit.prevent="saveRecipe" type="submit" class="btn btn-primary">
+        <button  type="submit" class="btn btn-primary">
             <span v-if="isUpdating">Update</span>
             <span v-else>Create</span>
         </button>
@@ -70,10 +70,10 @@
                 }
             },
             removeIngredient (ind) {
-                console.log(ind)
                 this.model.ingredients.splice(ind, 1)
             },
-            saveRecipe: function () {
+            saveRecipe () {
+                console.log('firing')
                 this.$emit('save-recipe', this.model)
             }
         }

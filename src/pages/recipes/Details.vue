@@ -6,7 +6,7 @@
             <ul v-for="ingredient in recipe.ingredients">
                 <li>{{ ingredient.amount }} {{ ingredient.name }} {{ ingredient.prepped }}</li>
             </ul>
-            <p class="card-text">{{ recipe.instructions }}</p>
+            <p v-html="recipe.instructions" class="card-text"></p>
         </div>
     </div>
 </template>

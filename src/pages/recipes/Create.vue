@@ -1,6 +1,6 @@
 <template>
     <div>
-        <recipe-form @save-recipe="addRecipe" :model="model" :isUpdating="isUpdating">
+        <recipe-form @save-recipe="addRecipe(model)" :model="model" :isUpdating="isUpdating">
         </recipe-form>
     </div>
 </template>

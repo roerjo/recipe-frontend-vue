@@ -15,26 +15,7 @@ export default {
     
     data () {
         return {
-            recipes: [
-                {
-                    id: 5,
-                    name: 'Mac \'n Cheese',
-                    description: 'A delicious pasta dish',
-                    instructions: 'Boil water, add pasta, cook for 10 min, drain, mix in cheese',
-                    ingredients: [
-                        {
-                            name: 'pasta',
-                            amount: '2 cups',
-                            prepped: ''
-                        },
-                        {
-                            name: 'cheese',
-                            amount: '3 tblsp',
-                            prepped: 'shredded'
-                        }
-                    ]
-                },
-            ],
+            recipes: [],
         }
     },
 
@@ -48,6 +29,7 @@ export default {
                 .then((stuff) => {
                     
                     for (let recipe of stuff.data.recipes) {
+                        recipe.instructions = recipe.instructions.replace(/(?:\r\n|\r|\n)/g, '<br />');
                         this.recipes.push(recipe)
                     }
                     console.log(this.recipes)
