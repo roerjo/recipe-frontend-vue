@@ -25,7 +25,7 @@ export default {
     },
     methods: {
         addRecipe (recipe) {
-            axios.post("http://recipe.app:8000/api/v1/recipe", recipe)
+            axios.post("recipe", recipe)
                 .then((stuff) => {
                     this.$router.push('/recipe')  
                 })

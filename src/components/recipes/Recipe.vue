@@ -51,7 +51,7 @@ export default {
 
     methods: {
         deleteRecipe (recipeId) {
-            axios.delete("http://recipe.app:8000/api/v1/recipe/" + recipeId)
+            axios.delete("recipe/" + recipeId)
                 .then((data) => {
                     this.$emit('update-recipe')
                 })
