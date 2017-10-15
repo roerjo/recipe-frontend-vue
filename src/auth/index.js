@@ -61,10 +61,8 @@ export default {
     else {
       return this.user.authenticated = false      
     }
-    console.log(this.user.authenticated)
   },
 
-  // The object to be passed as a header for authenticated requests
   getAuthHeader() {
     return 'Bearer ' + localStorage.getItem('access_token')
   }

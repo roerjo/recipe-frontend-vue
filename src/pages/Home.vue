@@ -1,31 +1,44 @@
 <template>
-    <div>
-    
-        <div class="title">
-            <h1>{{ msg }}</h1>
-        </div>
-    
-        <div>
-            <button @click="showRegister()">Register</button>
-            
-            <form v-if="registerShow">
-                <input type="text" name="first_name" v-model="model.first_name" placeholder="First Name"/>
-                <input type="text" name="last_name" v-model="model.last_name" placeholder="Last Name"/>
-                <input type="email" name="email" v-model="model.email" placeholder="Email"/>
-                <input type="password" name="password" v-model="model.password" placeholder="Password"/>
-                <input type="password" name="password_confirmation" v-model="model.password_confirmation" placeholder="Confirm Password"/>
-                <button type="button" @click="submit()">Register</button>
-            </form>
-        </div>
+    <div id="home">
+        <h1>{{ msg }}</h1>
+        
+        <div class="col-lg-12 text-center my-3"> 
+            <button @click="showRegister()" class="btn">Register</button>
+            <button @click="showLogin()" class="btn">Login</button>
+        </div> 
 
-        <div>
-            <button @click="showLogin()">Login</button>
-            <form v-if="loginShow">
+        <form v-if="registerShow">
+            
+            <div class="form-group">
+                <input type="text" name="first_name" v-model="model.first_name" placeholder="First Name"/>
+            </div>
+            <div class="form-group">
+                <input type="text" name="last_name" v-model="model.last_name" placeholder="Last Name"/>
+            </div>
+            <div class="form-group">
                 <input type="email" name="email" v-model="model.email" placeholder="Email"/>
+            </div>
+            <div class="form-group">
                 <input type="password" name="password" v-model="model.password" placeholder="Password"/>
-                <button type="button" @click="login()">Login</button>
-            </form>
-        </div>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password_confirmation" v-model="model.password_confirmation" placeholder="Confirm Password"/>
+            </div>
+
+            <button type="button" @click="submit()" class="btn btn-primary">Register</button>
+        </form>
+
+        <form v-if="loginShow">
+            
+            <div class="form-group">
+                <input type="email" name="email" v-model="model.email" placeholder="Email"/>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" v-model="model.password" placeholder="Password"/>
+            </div>
+            
+            <button type="button" @click="login()" class="btn btn-primary">Login</button>
+        </form>
         
         <div v-if="error">
             <p>{{ error }}</p>
@@ -68,21 +81,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
+#home {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
 }
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
+h1 {
+    width: 100%;
+    text-align: center;
 }
 </style>

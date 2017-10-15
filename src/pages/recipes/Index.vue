@@ -1,7 +1,7 @@
 <template>
     <div class="row justify-content-around">
         <h3 class="col-lg-12 text-center">All Your Recipes</h3>
-        <recipe v-for="recipe in recipes" :recipe="recipe"></recipe>
+        <recipe @update-recipe="updateRecipe" v-for="recipe in recipes" :recipe="recipe"></recipe>
     </div>
 </template>
 
@@ -32,11 +32,15 @@ export default {
                         recipe.instructions = recipe.instructions.replace(/(?:\r\n|\r|\n)/g, '<br />');
                         this.recipes.push(recipe)
                     }
-                    console.log(this.recipes)
+
                 })
                 .catch((err) => {
                     console.log(err.response.data)
                 })
+        },
+        updateRecipe () {
+            this.recipes = []
+            this.getRecipes()
         },
     },
 

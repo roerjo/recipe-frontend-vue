@@ -1,39 +1,36 @@
 <template>
     <div>
-        <div class="title">
-            <h1>{{ msg }}</h1>
-        </div>
+        <h2>Update a Recipe</h2>
+        <recipe-form @save-recipe="updateRecipe(recipe)" :recipe="recipe" :isUpdating="isUpdating">
+        </recipe-form>
     </div>
 </template>
 
 <script>
+import RecipeForm from '@/components/recipes/RecipeForm.vue'
+import axios from 'axios'
+
 export default {
-  name: 'update',
-  data () {
-    return {
-      msg: 'Update your recipes!'
-    }
-  }
+    name: 'update',
+    props: ['recipe'],
+    data () {
+        return {
+            isUpdating: true,
+        }
+    },
+    methods: {
+        updateRecipe (recipe) {
+            axios.put("http://recipe.app:8000/api/v1/recipe/" + recipe.id, recipe)
+                .then((stuff) => {
+                    this.$router.push('/recipe')  
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
+    },
+    components: {
+        'recipe-form': RecipeForm,
+    },
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-</style>

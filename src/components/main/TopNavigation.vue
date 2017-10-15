@@ -1,10 +1,23 @@
 <template>
-    <nav v-if="authenticated">
-        <router-link to="/recipe">All Your Recipes</router-link>
-        <router-link to="/create">Create a New Recipe</router-link>
-        <router-link to="/recipe/delete">Delete a New Recipe</router-link>
-        <router-link to="/recipe/update">Update a New Recipe</router-link>
-        <router-link @click.native="logout" to="">Logout</router-link>
+    <nav v-if="authenticated" class="navbar navbar-expand-lg navbar-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                data-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <router-link to="/recipe" class="nav-link">All Your Recipes</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link to="/create" class="nav-link">Create a New Recipe</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link @click.native="logout" to="" class="nav-link">Logout</router-link>
+                </li>
+            </ul>
+        </div>
     </nav>
 </template>
 
@@ -13,8 +26,10 @@ import auth from '@/auth/index'
 
 export default {
     
-    computed: {
-        authenticated () { return auth.checkAuth() }
+    data () {
+        return {
+            authenticated: auth.checkAuth(),
+        }
     },
     
     methods: {

@@ -6,7 +6,6 @@ import auth from '@/auth/index'
 import Index from '@/pages/recipes/Index'
 import Details from '@/pages/recipes/Details'
 import Create from '@/pages/recipes/Create'
-import Delete from '@/pages/recipes/Delete'
 import Update from '@/pages/recipes/Update'
 
 Vue.use(Router)
@@ -27,18 +26,6 @@ const routes = [
       path: '/recipe',
       name: 'index',
       component: Index,
-      children: [
-        {
-            path: 'delete/:id',
-            name: 'delete',
-            component: Delete
-        },
-        {
-            path: 'update/:id',
-            name: 'update',
-            component: Update
-        }
-      ],
       beforeEnter: (to, from, next) => {
           if(auth.checkAuth())
               next()
@@ -68,9 +55,19 @@ const routes = [
           else
               next('/')
         }
+    },
+    {
+        path: '/update/:id',
+        name: 'update',
+        component: Update,
+        props: true,
+        beforeEnter: (to, from, next) => {
+          if(auth.checkAuth())
+              next()
+          else
+              next('/')
+        }
     }
-        
-    
 ]
 
 const router = new Router({

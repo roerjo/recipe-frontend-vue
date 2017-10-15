@@ -9,9 +9,17 @@
 import TopNavigation from '@/components/main/TopNavigation'
 
 export default {
-    
+
     components: {
         'top-navigation': TopNavigation,
-    },
+    }
+
 }
 </script>
+
+<style scoped>
+.container {
+    height: 100%;
+}
+</style>
+

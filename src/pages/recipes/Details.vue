@@ -18,7 +18,7 @@ export default {
   name: 'details',
   props: ['recipe'],
   components: {
-      'recipe': Recipe
+      'recipe': Recipe,
   }
 }
 </script>
