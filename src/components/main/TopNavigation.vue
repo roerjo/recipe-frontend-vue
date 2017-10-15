@@ -6,7 +6,7 @@
         </button>
         
         <div class="collapse navbar-collapse justify-content-center text-center" id="navContent">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav">
                 <li class="nav-item">
                     <router-link to="/recipe" class="nav-link">All Your Recipes</router-link>
                 </li>
@@ -40,3 +40,9 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+.navbar {
+    padding: .5rem 0;
+}
+</style>
