@@ -20,7 +20,7 @@ export default {
     },
     methods: {
         updateRecipe (recipe) {
-            axios.put("http://recipe.app:8000/api/v1/recipe/" + recipe.id, recipe)
+            axios.put("recipe/" + recipe.id, recipe)
                 .then((stuff) => {
                     this.$router.push('/recipe')  
                 })

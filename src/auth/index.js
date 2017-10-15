@@ -1,11 +1,6 @@
 import router from '../router/index'
 import axios from 'axios'
 
-// URL and endpoint constants
-const API_URL = 'http://recipe.app:8000/'
-const LOGIN_URL = API_URL + 'api/v1/login'
-const SIGNUP_URL = API_URL + 'api/v1/register'
-
 export default {
 
   user: {
@@ -13,7 +8,7 @@ export default {
   },
 
   login(context, creds, redirect) {
-    axios.post(LOGIN_URL, creds)
+    axios.post('login', creds)
         .then((data) => {
 
             localStorage.setItem('access_token', data.data)
@@ -31,7 +26,7 @@ export default {
   },
 
   signup(context, creds, redirect) {
-    axios.post(SIGNUP_URL, creds)
+    axios.post('register', creds)
         .then((data) => {
             
             localStorage.setItem('access_token', data.data)

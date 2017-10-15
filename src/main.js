@@ -11,6 +11,7 @@ Vue.use(VeeValidate)
 
 Vue.config.productionTip = false
 
+axios.defaults.baseURL = 'http://recipe.app:8000/api/v1/';
 axios.defaults.headers.common['Authorization'] = auth.getAuthHeader();
 
 new Vue({

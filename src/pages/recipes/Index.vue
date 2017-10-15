@@ -25,7 +25,7 @@ export default {
 
     methods: {
         getRecipes () {
-            axios.get("http://recipe.app:8000/api/v1/recipe")
+            axios.get("recipe")
                 .then((stuff) => {
                     
                     for (let recipe of stuff.data.recipes) {
