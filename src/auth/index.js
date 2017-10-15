@@ -26,7 +26,7 @@ export default {
   },
 
   signup(context, creds, redirect) {
-    axios.post('login', creds)
+    axios.post('register', creds)
         .then((data) => {
             
             localStorage.setItem('access_token', data.data)

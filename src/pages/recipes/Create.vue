@@ -1,7 +1,7 @@
 <template>
     <div>
         <h2>Create a Recipe</h2>
-        <recipe-form @save-recipe="addRecipe(recipe)" :recipe="recipe" :isUpdating="isUpdating">
+        <recipe-form @save-recipe="addRecipe()" :recipe="recipe" :isUpdating="isUpdating">
         </recipe-form>
     </div>
 </template>
@@ -24,8 +24,9 @@ export default {
         }
     },
     methods: {
-        addRecipe (recipe) {
-            axios.post("recipe", recipe)
+        addRecipe () {
+            console.log(this.recipe)
+            axios.post("recipe", this.recipe)
                 .then((stuff) => {
                     this.$router.push('/recipe')  
                 })

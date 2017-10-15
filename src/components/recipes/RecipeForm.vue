@@ -81,7 +81,7 @@ export default {
             if (this.recipe.ingredients.length === 0) {
                 alert("You must add at least one ingredient")
             } else {
-                this.$emit('save-recipe', this.recipe)
+                this.$emit('save-recipe')
             }
         }
     }
